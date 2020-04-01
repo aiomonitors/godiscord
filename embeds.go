@@ -82,6 +82,7 @@ func (e *Embed) SetAuthor(Name, URL, IconURL string) {
 }
 
 //SetColor takes in a hex code and sets the color of the Embed.
+//Returns an error if the hex is invalid
 func (e *Embed) SetColor(color string) error {
 	color = strings.Replace(color, "0x", "", -1)
 	color = strings.Replace(color, "0X", "", -1)
@@ -93,7 +94,8 @@ func (e *Embed) SetColor(color string) error {
 	return nil
 }
 
-//SetThumbnail sets the thumbnail of the embed
+//SetThumbnail sets the thumbnail of the embed.
+//Returns an error if the embed was not initialized properly
 func (e *Embed) SetThumbnail(URL string) error {
 	if len(e.Embeds) < 1 {
 		return errors.New("Invalid Embed passed in, Embed.Embeds must have at least one EmbedElement")
@@ -103,6 +105,7 @@ func (e *Embed) SetThumbnail(URL string) error {
 }
 
 //SetImage sets the image of the embed
+//Returns an error if the embed was not initialized properly
 func (e *Embed) SetImage(URL string) error {
 	if len(e.Embeds) < 1 {
 		return errors.New("Invalid Embed passed in, Embed.Embeds must have at least one EmbedElement")
@@ -111,7 +114,8 @@ func (e *Embed) SetImage(URL string) error {
 	return nil
 }
 
-//SetFooter sets the footer of the embed
+//SetFooter sets the footer of the embed.
+//Returns an error if the embed was not initialized properly
 func (e *Embed) SetFooter(Text, IconURL string) error {
 	if len(e.Embeds) < 1 {
 		return errors.New("Invalid Embed passed in, Embed.Embeds must have at least one EmbedElement")
@@ -120,7 +124,8 @@ func (e *Embed) SetFooter(Text, IconURL string) error {
 	return nil
 }
 
-//AddField adds a frield to the Embed
+//AddField adds a frield to the Embed.
+//Returns an error if the embed was not initialized properly
 func (e *Embed) AddField(Name, Value string, Inline bool) error {
 	if len(e.Embeds) < 1 {
 		return errors.New("Invalid Embed passed in, Embed.Embeds must have at least one EmbedElement")
@@ -130,6 +135,7 @@ func (e *Embed) AddField(Name, Value string, Inline bool) error {
 }
 
 //SendToWebhook sents the Embed to a webhook.
+//Returns error if embed was invalid or there was an error posting to the webhook.
 func (e *Embed) SendToWebhook(Webhook string) error {
 	embed, marshalErr := json.Marshal(e)
 	if marshalErr != nil {
