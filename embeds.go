@@ -86,6 +86,7 @@ func (e *Embed) SetAuthor(Name, URL, IconURL string) {
 func (e *Embed) SetColor(color string) error {
 	color = strings.Replace(color, "0x", "", -1)
 	color = strings.Replace(color, "0X", "", -1)
+	color = strings.Replace(color, "#", "", -1)
 	colorInt, err := strconv.ParseInt(color, 16, 64)
 	if err != nil {
 		return errors.New("Invalid hex code passed")
