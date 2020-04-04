@@ -57,7 +57,7 @@ type Image struct {
 
 //Webhook represents a webhook
 type Webhook struct {
-	URL     string `json:"url"`
+	URL     string `json:"webhook"`
 	IconURL string `json:"icon_url"`
 	Text    string `json:"text"`
 }
