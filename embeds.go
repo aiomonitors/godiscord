@@ -60,6 +60,7 @@ type Webhook struct {
 	URL     string `json:"webhook"`
 	IconURL string `json:"icon_url"`
 	Text    string `json:"text"`
+	Color   string `json:"color"`
 }
 
 //NewEmbed creates a new embed object.
